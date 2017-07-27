@@ -1,0 +1,4 @@
+<h1>This is Index Page</h1>
+<%= @recipes.each do |recipe| %>
+<h2><%= link_to recipe.name, recipe %></h2>
+<% end %>
