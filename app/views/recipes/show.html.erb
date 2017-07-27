@@ -1,8 +1,11 @@
-<h1>Recipe Show Page</h1>
+<%= image_tag @recipe.image.url(:medium) %>
 <p><%= @recipe.name %></p>
 <ul>
   <li>
-    <p><%= @recipe.ingredients.name %></p>
+    <p><%= @recipe.ingredients.each do |ingredient| %></p>
+    <%= ingredient.name %>
+    <%= ingredient.quantity %>
+    <% end %>
   </li>
 </ul>
 

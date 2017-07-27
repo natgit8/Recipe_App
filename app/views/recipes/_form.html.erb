@@ -23,17 +23,20 @@
     <div class="col-md-6">
       <h3>Ingredients</h3>
       <div id="ingredients">
-        <%= f.simple_fields_for :recipe_ingredients do |recipe_ingredient| %>
-        <label>Select Existing Ingredient:
+        <%= f.simple_fields_for :ingredient_attributes do |builder| %>
+        <label>Add New Ingredients:
         </label>
+        <%= render 'ingredient', f: builder %>
       </br>
-      <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name %></br>
-    <label>OR:</label>
+      <label>OR:</label>
+      <label>Select Existing Ingredient:
+      </label>
+    </br>
+    <%= builder.collection_select :ingredient_ids, Ingredient.all, :id, :name %></br>
 
-    <% end %>
-    <label><%= link_to "Add New Ingredient", new_ingredient_path %>
-    </label>
-  </br>
+  <% end %>
+
+</br>
 </div>
 </div>
 <%= f.button :submit, class: "btn btn-primary" %>
