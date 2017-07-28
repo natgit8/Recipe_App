@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
 
-  accepts_nested_attributes_for :ingredients, allow_destroy: true, reject_if: proc {|att| att['name'].blank? }
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   has_attached_file :image, styles: { medium: "300x300>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

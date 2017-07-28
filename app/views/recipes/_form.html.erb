@@ -28,15 +28,12 @@
         </label>
         <%= render 'ingredient', f: builder %>
       </br>
-      <label>OR:</label>
-      <label>Select Existing Ingredient:
-      </label>
-    </br>
-    <%= builder.collection_select :ingredient_ids, Ingredient.all, :id, :name %></br>
+      <h3>Or Select Existing Ingredient to Add:
+      </h3>
+      <%= builder.collection_select :ingredient_ids, Ingredient.all, :id, :name %></br>
+    <% end %>
 
-  <% end %>
-
-</br>
+  </br>
 </div>
 </div>
 <%= f.button :submit, class: "btn btn-primary" %>
