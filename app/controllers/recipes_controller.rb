@@ -9,8 +9,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.ingredients.build
-    @ingredient = Ingredient.new
+    @recipe.ingredients << Ingredient.new
   end
 
   def edit
@@ -19,7 +18,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.ingredients.build
+    @recipe.ingredients << Ingredient.new
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
     else
@@ -50,6 +49,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, ingredient_attributes: [:id, :name, :quantity])
+    params.require(:recipe).permit(:name, :description, :image, ingredient_ids:[], ingredients_attributes: [:name, :quantity])
   end
 end
