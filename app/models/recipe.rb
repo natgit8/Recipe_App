@@ -29,14 +29,14 @@ class Recipe < ApplicationRecord
   # params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
   #
   #     if recipe_ingredient[:ingredient][:name].present?
-  #       ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+  #       @ingredient = Ingredient.find_or_create_by(name: ingredient_name)
   #
   #     elsif recipe_ingredient[:ingredient_id].present?
-  #       ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
+  #       @ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
   #     end
   #
   #     if recipe_ingredient[:quantity].present?
-  #       RecipeIngredient.create(quantity: recipe_ingredient[:quantity], ingredient_id: ingredient.id, recipe_id: self.id )
+  #       RecipeIngredient.create( ingredient_id: ingredient.id, recipe_id: self.id )
   #     end
   #   end
   # end

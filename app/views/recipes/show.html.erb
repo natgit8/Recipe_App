@@ -13,10 +13,7 @@
         </p>
 
       <li>
-        <%= @recipe.ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient.quantity} #{ingredient.name}" %></li>
-        <% end %>
-
+        <%= @recipe.ingredients.name %>
       </li>
     </div>
     <div class="panel-footer">

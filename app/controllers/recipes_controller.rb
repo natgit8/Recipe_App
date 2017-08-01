@@ -1,3 +1,4 @@
+require 'byebug'
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
@@ -9,6 +10,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.ingredients << Ingredient.new
+    6.times.collect { @recipe.ingredients.build }
   end
 
   def edit
@@ -26,6 +28,8 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @ingredient = Ingredient.new
+    @recipe.ingredients << @ingredient
   end
 
   def update
@@ -48,11 +52,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, ingredient_ids:[], ingredients_attributes: [:name, :quantity])
+    params.require(:recipe).permit(:name, :description, :image, ingredient_ids: [], ingredients_attributes: [:name, :quantity])
   end
-
-  # def recipe_ingredient_params
-  #   params.require(:recipe).permit(recipe_ingredients_attributes: [:ingredient_id, ingredients_attributes: [:name, :quantity]])
-  # end
 
 end
