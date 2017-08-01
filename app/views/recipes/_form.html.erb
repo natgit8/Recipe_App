@@ -1,40 +1,27 @@
-<%= simple_form_for @recipe, html: { multipart: true } do |f| %>
-<% if @recipe.errors.any? %>
-<div id="errors">
-  <p>
-    <%= @recipe.errors.count %>
-    Prevented this recipe from saving
-  </p>
-  <ul>
-    <% @recipe.errors.full_messages.each do |msg| %>
-    <li>
-      <%= msg %>
-    </li>
+<%= simple_form_for recipe do |f| %>
+
+<div>Recipe Name:</div>
+<div><%= f.text_field :name %></div>
+<div>Recipe Description:</div>
+<div><%= f.text_field :description %></div>
+<div>Recipe Image:</div>
+<div><%= f.input :image, input_html: { class: 'form-control' } %></div>
+
+Add Ingredients:
+
+<div>
+  <%= f.fields_for :recipe_ingredients, @ingredients do |recipe_ingredient| %>
+  <div>
+    Select Ingredient:
+    <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+    <%= recipe_ingredient.fields_for :ingredient, recipe.ingredients.build do |ingredient| %>
+    Or Create New Ingredient:
+    <%= ingredient.text_field :name %>
     <% end %>
-  </ul>
+  </div>
+  <% end %>
 </div>
+
+<%= f.submit "Submit" %>
+
 <% end %>
-<div class="panel-body">
-  <%= f.input :name, input_html: { class: 'form-control' } %>
-  <%= f.input :description, input_html: { class: 'form-control' } %>
-  <%= f.input :image, input_html: { class: 'form-control' } %>
-
-  <%= f.label "Create Ingredient:" %><br>
-  <%= f.simple_fields_for :ingredients, @recipe.ingredients.build do |i| %>
-  <%= i.label :name %><br>
-  <%= i.text_field :name, placeholder: 'i.e. egg, tomato, onion'%><br>
-  <%= i.label :quantity %><br>
-  <%= i.text_field :quantity, placeholder: '#' %>
-  <% end %><br><br>
-  Select Existing Ingredient:<br>
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name, :include_blank => true %><br>
-  <br></br>
-
-  <% if params[:action] == "edit" %>
-  <%= f.submit " Edit Recipe", id:"submitButton"  %>
-<% else %>
-  <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
-  <% end %>
-</div>
-</div>

@@ -11,26 +11,27 @@
         <p class="description">
           <%= @recipe.description %>
         </p>
-
-      <li>
-        <%= @recipe.ingredients.name %>
-      </li>
-    </div>
-    <div class="panel-footer">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="user"></p>
-          '#'
-        </div>
-        <div class="col-md-6">
-          <div class="btn-group pull-right">
-            <%= link_to "Back", root_path, class: "btn btn-default" %>
-            <%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
-            <%= link_to "Delete", recipe_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+        <ul>
+          <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+          <li><%= recipe_ingredient.ingredient %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="user"></p>
+            '#'
+          </div>
+          <div class="col-md-6">
+            <div class="btn-group pull-right">
+              <%= link_to "Back", root_path, class: "btn btn-default" %>
+              <%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
+              <%= link_to "Delete", recipe_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

@@ -1,4 +1,3 @@
-require 'byebug'
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
@@ -9,35 +8,36 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.ingredients << Ingredient.new
-    6.times.collect { @recipe.ingredients.build }
-  end
-
-  def edit
-    3.times.collect { @recipe.ingredients.build }
+    @ingredients = 6.times.collect { @recipe.recipe_ingredients.build}
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.ingredients << Ingredient.new
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
-      redirect_to @recipe, notice: "Successfully created new recipe"
+      @recipe.add_ingredients(recipe_ingredient_params)
+      redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been added"
     else
       render 'new'
+    end
+  end
+
+  def edit
+    3.times.collect { @recipe.recipe_ingredients.build }
+  end
+
+  def update
+    if @recipe.update(recipe_params)
+      @recipe.add_ingredients(recipe_ingredient_params)
+      redirect_to @recipe, notice: "Your recipe has successfully been updated"
+    else
+      render 'edit'
     end
   end
 
   def show
     @ingredient = Ingredient.new
     @recipe.ingredients << @ingredient
-  end
-
-  def update
-    if @recipe.update(recipe_params)
-      redirect_to @recipe
-    else
-      render 'edit'
-    end
   end
 
   def destroy
@@ -52,7 +52,12 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, ingredient_ids: [], ingredients_attributes: [:name, :quantity])
+    params.require(:recipe).permit(:name, :description, :image)
   end
+
+  def recipe_ingredient_params
+    params.require(:recipe).permit(recipe_ingredients_attributes: [:ingredient_id, ingredient: [:name]])
+  end
+
 
 end
