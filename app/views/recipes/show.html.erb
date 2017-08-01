@@ -1,14 +1,39 @@
-<%= image_tag @recipe.image.url(:medium) %>
-<p><%= @recipe.name %></p>
-<ul>
-  <li>
-    <%= @recipe.ingredients.name %>
-  </li>
-</ul>
+<div class="row" id="recipe_show">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading recipe_image">
+        <%= image_tag @recipe.image.url(:medium) %>
+      </div>
+      <div class="panel-body">
+        <h1>
+          <%= @recipe.name %>
+        </h1>
+        <p class="description">
+          <%= @recipe.description %>
+        </p>
 
-<p><%= @recipe.description %></p>
-</br>
+      <li>
+        <%= @recipe.ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient.quantity} #{ingredient.name}" %></li>
+        <% end %>
 
-<%= link_to "Back", root_path, class: "btn btn-default" %>
-<%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
-<%= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default"%>
+      </li>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="user"></p>
+          '#'
+        </div>
+        <div class="col-md-6">
+          <div class="btn-group pull-right">
+            <%= link_to "Back", root_path, class: "btn btn-default" %>
+            <%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
+            <%= link_to "Delete", recipe_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
