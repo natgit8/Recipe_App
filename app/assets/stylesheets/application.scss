@@ -10,6 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+ @mixin box-shadow {
+ 	-webkit-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+ 	-moz-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+ 	box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+ }
+
+ .main_content {
+ 	padding: 0 0 50px 0;
+ }
