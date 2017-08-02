@@ -11,17 +11,25 @@
         <p class="description">
           <%= @recipe.description %>
         </p>
-        <ul>
-          <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-          <li><%= recipe_ingredient.ingredient %></li>
-          <% end %>
-        </ul>
+        <p class="ingredients">
+          <ul>
+            <%= @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+            <li><%= recipe_ingredient.ingredient %></li>
+            <% end %>
+          </ul>
+        </p>
+        <h3>Directions:
+        </h3>
+        <ol>
+          <li><%= @recipe.directions %></li>
+        </ol>
       </div>
+
       <div class="panel-footer">
         <div class="row">
           <div class="col-md-6">
             <p class="user"></p>
-            '#'
+
           </div>
           <div class="col-md-6">
             <div class="btn-group pull-right">

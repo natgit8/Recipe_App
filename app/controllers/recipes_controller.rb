@@ -8,7 +8,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @ingredients = 6.times.collect { @recipe.recipe_ingredients.build}
+    @ingredients = @recipe.ingredients.build
+    @ingredient_recipes = 3.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def create
@@ -23,7 +24,8 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    3.times.collect { @recipe.recipe_ingredients.build }
+    # 3.times.collect {@recipe.ingredients.build}
+    @ingredient_recipes = 3.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def update
@@ -36,8 +38,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.new
-    @recipe.ingredients << @ingredient
   end
 
   def destroy
@@ -52,7 +52,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image)
+    params.require(:recipe).permit(:name, :description, :image, :directions)
   end
 
   def recipe_ingredient_params
