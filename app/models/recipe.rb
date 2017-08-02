@@ -16,8 +16,9 @@ class Recipe < ApplicationRecord
   def add_ingredients(params)
     params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
 
-      if recipe_ingredient[:recipe_id].present?
-         @ingredient = Ingredient.find_or_create_by(params[:id])
+      if recipe_ingredient[:ingredient_id].present?
+        ingredient_name = recipe_ingredient[:ingredient][:name].downcase
+         @ingredient = Ingredient.find_or_create_by(name: ingredient_name)
 
       elsif recipe_ingredient[:ingredient_id].present?
          @ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
@@ -29,12 +30,6 @@ class Recipe < ApplicationRecord
     end
   end
 
-  # def add_ingredients(params)
-  #   params[:ingredients_attributes].each do |k, recipe_ingredient|
-  #     if ingredient[:id].present?
-  #       @recipe_ingredient = RecipeIngredient.find_or_create_by(params[:id])
-  #     elsif ingredient[:name].present?
-  # end
 
 
 end

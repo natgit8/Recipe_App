@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.build
-    @ingredient_recipes = 3.times.collect { @recipe.recipe_ingredients.build }
+    @recipe_ingredients = 3.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def create
