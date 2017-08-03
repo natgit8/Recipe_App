@@ -13,9 +13,9 @@
         </p>
         <p class="ingredients">
           <ul>
-            <%= @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-            <li><%= recipe_ingredient.ingredients_attributes %></li>
-            <% end %>
+            <% @recipe.ingredients.each do |recipe_ingredient| %>
+            <li><%= recipe_ingredient.name %>
+              <% end %>
           </ul>
         </p>
         <h3>Directions:
