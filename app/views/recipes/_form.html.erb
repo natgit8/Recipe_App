@@ -10,10 +10,8 @@
 <h3>
 Add Ingredients:
 </h3>
-<h4>Select Existing Ingredient:
-</h4>
 
-<h4>OR Create New Ingredient:
+<h4>New Ingredient:
 </h4>
 
 <div>
@@ -24,6 +22,10 @@ Add Ingredients:
 <%= recipe_ingredient.input :name, input_html: { class: 'form-control'} %>
 <% end %>
 </div>
+<h4>Select Existing Ingredient:
+</h4>
+<%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
+
 </div>
 
 <%= f.submit "Submit" %></br>

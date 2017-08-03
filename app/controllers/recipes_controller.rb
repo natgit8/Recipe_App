@@ -9,13 +9,13 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @ingredients = 3.times.collect { @recipe.ingredients.build }
+    @ingredients = 4.times.collect { @recipe.ingredients.build }
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    # @recipe = current_user.recipes.build(recipe_params)
-    
+    @recipe = current_user.recipes.build(recipe_params)
+
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been added"
     else
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-
+    1.times { @recipe.ingredients.build }
   end
 
   def update
@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    # byebug
+
   end
 
   def destroy
@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, :directions, :ingredients_attributes => [:name, :quantity])
+    params.require(:recipe).permit(:name, :description, :image, :directions, :ingredient_ids => [], :ingredients_attributes => [:name, :quantity])
   end
 
 end
