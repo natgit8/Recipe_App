@@ -1,24 +1,19 @@
-# README
+#Recipe App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app will allow you to create or browse recipes with the features of adding ingredients, images and directions.
 
-Things you may want to cover:
+Installation
 
-* Ruby version
+git clone git@github.com:natgit8/Recipe_App.git
+cd Recipe_App
+bundle install
+rails db:migrate
+rails s
 
-* System dependencies
+Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/itzsaga/my-fave-food. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Database creation
+License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the MIT License.
