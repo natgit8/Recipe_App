@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Recipe App
 
-Things you may want to cover:
+This app will allow you to create or browse recipes with the features of adding ingredients, images and directions.
 
-* Ruby version
+Installation
 
-* System dependencies
+git clone git@github.com:natgit8/Recipe_App.git
+cd Recipe_App
+bundle install
+rails db:migrate
+rails s
 
-* Configuration
+Contributing
 
-* Database creation
+Bug reports and pull requests are welcome on GitHub at https://github.com/natgit8/Recipe_App/. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Database initialization
+License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the MIT License.
