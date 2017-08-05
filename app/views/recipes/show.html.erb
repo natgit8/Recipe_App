@@ -42,6 +42,16 @@
       </div>
     </div>
   </div>
+  <div id="comments">
+    <h2><%= @recipe.comments.count %>
+      Comments</h2>
+    <%= render @recipe.comments %>
+    <h3>Add a comment:
+    </h3>
+    <%= render partial: 'comments/form', locals: { comment: @comment } %>
+
+    <p><%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
 </div>
 </div>
 </div>
