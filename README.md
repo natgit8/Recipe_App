@@ -12,7 +12,7 @@ rails s
 
 Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/itzsaga/my-fave-food. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/natgit8/Recipe_App/. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 License
 
