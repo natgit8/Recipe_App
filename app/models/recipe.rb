@@ -5,28 +5,17 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
 
   # accepts_nested_attributes_for :recipe_ingredients
-  # accepts_nested_attributes_for :ingredients
+  # accepts_nested_attributes_for :ingredients, allow_destroy: true
 
 
   has_attached_file :image, styles: { medium: "300x300>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
-  # def ingredients_attributes=(ingredient_attributes)
-  #       ingredient_attributes.each do |k, ingredient|
-  #       self.ingredients.build(ingredient)
-  #   end
-  # end
-
   def ingredients_attributes=(ingredients_attributes)
-    ingredients_attributes.values.each do |k, attribute|
-      exists = attributes['id'].present?
-      empty = attributes.except(:id).values.all?(&:blank?)
-      if attribute exists and empty
-        return (!exists and empty)
-      else
-        self.ingredients.build(attribute)
-      end
+    ingredients_attributes.each do |k, attribute|
+      ingredient = Ingredient.find_or_create_by(attribute)
+      ingredients << ingredient if ingredient.persisted?
     end
   end
 

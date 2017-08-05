@@ -1,41 +1,30 @@
 <%= simple_form_for @recipe do |f| %>
-<% if @recipe.errors.any? %>
-<div id="errors">
-  <h2></h2>
-  <%= pluralize(@recipe.errors.count, "error") %>
-  prevented this Recipe from saving
-  <ul>
-    <% @recipe.errors.full_messages.each do |msg| %>
-    <li>
-      <%= msg %>
-    </li>
-    <% end %>
 
-    <h4>Recipe Name:</h4>
-    <div><%= f.text_field :name %></div>
-    <div><%= f.input :description, input_html: { class: 'form-control'} %></div>
-    <div><%= f.input :image, input_html: { class: 'form-control' } %></div>
-    <div><%= f.input :directions, input_html: { class: 'form-control' }%></br>
-  </div>
+<h4>Recipe Name:</h4>
+<div><%= f.text_field :name %></div>
+<div><%= f.input :description, input_html: { class: 'form-control'} %></div>
+<div><%= f.input :image, input_html: { class: 'form-control' } %></div>
+<div><%= f.input :directions, input_html: { class: 'form-control' }%></br>
+</div>
 
-  <h3>
-    Add Ingredients:
-  </h3>
+<h3>
+Add Ingredients:
+</h3>
 
-  <h4>New Ingredient:
-  </h4>
+<h4>New Ingredient:
+</h4>
 
-  <div>
-    <%= f.simple_fields_for :ingredients do |recipe_ingredient| %>
-  </br>
+<div>
+<%= f.simple_fields_for :ingredients do |recipe_ingredient| %>
+</br>
 
-  <div>
-    <%= recipe_ingredient.input :name, input_html: { class: 'form-control'} %>
-    <% end %>
-  </div>
-  <h4>Select Existing Ingredient:
-  </h4>
-  <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
+<div>
+<%= recipe_ingredient.input :name, input_html: { class: 'form-control'} %>
+<% end %>
+</div>
+<h4>Select Existing Ingredient:
+</h4>
+<%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
 
 </div>
 
