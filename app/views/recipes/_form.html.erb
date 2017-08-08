@@ -28,6 +28,11 @@ Add Ingredients:
 
 </div>
 
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% if params[:action] == "edit" %>
+<%= f.submit " Edit Recipe", id:"submitButton"  %>
+<% else %>
 <%= f.submit "Submit" %></br>
+<% end %>
 
 <% end %>
