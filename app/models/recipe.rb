@@ -1,9 +1,13 @@
+# require 'byebug'
 class Recipe < ApplicationRecord
   belongs_to :user, optional: true
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
+  has_many :comments
 
-  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
+  # accepts_nested_attributes_for :recipe_ingredients
+
+
   accepts_nested_attributes_for :ingredients, allow_destroy: true
 
 
@@ -11,30 +15,12 @@ class Recipe < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
-
-
-  def add_ingredients(params)
-    params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
-
-      if recipe_ingredient[:recipe_id].present?
-         @ingredient = Ingredient.find_or_create_by(params[:id])
-
-      elsif recipe_ingredient[:ingredient_id].present?
-         @ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_id])
-      end
-
-      if recipe_ingredient[:recipe_id].present?
-        RecipeIngredient.create( ingredient_id: ingredient.id, recipe_id: self.id )
-      end
+  def ingredients_attributes=(ingredients_attributes)
+    ingredients_attributes.each do |k, attribute|
+      ingredient = Ingredient.find_or_create_by(attribute)
+      ingredients << ingredient if ingredient.persisted?
     end
   end
-
-  # def add_ingredients(params)
-  #   params[:ingredients_attributes].each do |k, recipe_ingredient|
-  #     if ingredient[:id].present?
-  #       @recipe_ingredient = RecipeIngredient.find_or_create_by(params[:id])
-  #     elsif ingredient[:name].present?
-  # end
 
 
 end

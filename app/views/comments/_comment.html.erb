@@ -1,0 +1,12 @@
+<%= div_for @comments do |comment| %>
+<p>
+  <strong>
+    Posted
+    <%= time_ago_in_words(comment.created_at) %>
+    ago
+  </strong>
+  <br/>
+  <%= comment.body %>
+  <%= comment.rating %>
+</p>
+<% end %>

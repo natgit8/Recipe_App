@@ -1,5 +1,3 @@
-# README
-
 #Recipe App
 
 This app will allow you to create or browse recipes with the features of adding ingredients, images and directions.

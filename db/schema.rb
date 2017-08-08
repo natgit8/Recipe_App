@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802004326) do
+ActiveRecord::Schema.define(version: 20170805213715) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "recipe_id"
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +35,6 @@ ActiveRecord::Schema.define(version: 20170802004326) do
     t.integer  "ingredient_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "user_id"
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
@@ -55,6 +65,8 @@ ActiveRecord::Schema.define(version: 20170802004326) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
