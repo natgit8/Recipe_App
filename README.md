@@ -2,7 +2,7 @@
 
 This app will allow you to create or browse recipes with the features of adding ingredients, images and directions.
 
-Installation:
+Installation
 
 git clone git@github.com:natgit8/Recipe_App.git
 cd Recipe_App
@@ -10,7 +10,7 @@ bundle install
 rails db:migrate
 rails s
 
-Contributing:
+Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/natgit8/Recipe_App/. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
