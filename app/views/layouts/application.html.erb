@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-brand">
@@ -17,8 +18,12 @@
           <%= link_to "New Recipe", new_recipe_path %>
         </li>
         <li>
-          <%= link_to "Sign Out", method: :delete %>
+          <%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+        <li>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         </li>
+        <li><%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %></li>
       </ul>
     </div>
   </nav>

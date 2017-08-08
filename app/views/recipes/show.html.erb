@@ -12,17 +12,17 @@
           <%= @recipe.description %>
         </p>
         <p class="ingredients">
-          <ul>
-            <%= @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-            <li><%= recipe_ingredient.ingredient %></li>
+          <ol>
+            <% @recipe.ingredients.each do |recipe_ingredient| %>
+            <li><%= recipe_ingredient.name %></li>
             <% end %>
-          </ul>
+          </ol>
         </p>
         <h3>Directions:
         </h3>
-        <ol>
+        <ul>
           <li><%= @recipe.directions %></li>
-        </ol>
+        </ul>
       </div>
 
       <div class="panel-footer">
@@ -42,4 +42,19 @@
       </div>
     </div>
   </div>
+  <div id="comments">
+    <h2><%= @recipe.comments.count %>
+      Comments</h2>
+    <%= render @recipe.comments %>
+    <h3>Add a comment:
+    </h3>
+    <%= render partial: 'comments/form', locals: { comment: @comment } %>
+
+    <p><%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>

@@ -1,4 +1,4 @@
-<%= simple_form_for recipe do |f| %>
+<%= simple_form_for @recipe do |f| %>
 
 <h4>Recipe Name:</h4>
 <div><%= f.text_field :name %></div>
@@ -7,24 +7,32 @@
 <div><%= f.input :directions, input_html: { class: 'form-control' }%></br>
 </div>
 
-<h4>
+<h3>
 Add Ingredients:
+</h3>
+
+<h4>New Ingredient:
 </h4>
 
 <div>
-<%= f.simple_fields_for :recipe_ingredients do |recipe_ingredient| %>
+<%= f.simple_fields_for :ingredients do |recipe_ingredient| %>
+</br>
+
 <div>
-  Select Ingredient:
-  <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name, {multiple: true} %>
-  <%= recipe_ingredient.fields_for :ingredients, recipe.ingredients.build do |ingredient| %>
-  Or Create New Ingredient:
-  <%= ingredient.text_field :name %>
-  <%= ingredient.label :_destroy, 'Remove' %>
-  <% end %>
-</div>
+<%= recipe_ingredient.input :name, input_html: { class: 'form-control'} %>
 <% end %>
 </div>
+<h4>Select Existing Ingredient:
+</h4>
+<%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
 
+</div>
+
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% if params[:action] == "edit" %>
+<%= f.submit " Edit Recipe", id:"submitButton"  %>
+<% else %>
 <%= f.submit "Submit" %></br>
+<% end %>
 
 <% end %>
