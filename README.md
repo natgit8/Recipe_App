@@ -1,5 +1,7 @@
 #Recipe App
 
+This is a recipe app made for a rails project at the Flatiron School.
+
 This app will allow you to create or browse recipes with the features of adding ingredients, images and directions.
 
 Installation

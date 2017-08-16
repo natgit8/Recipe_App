@@ -5,10 +5,9 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :comments
 
-  # accepts_nested_attributes_for :recipe_ingredients
+  # accepts_nested_attributes_for :ingredients, allow_destroy: true
 
-
-  accepts_nested_attributes_for :ingredients, allow_destroy: true
+  scope :most_recent, -> { order(created_at: :desc)}
 
 
   has_attached_file :image, styles: { medium: "300x300>"}
