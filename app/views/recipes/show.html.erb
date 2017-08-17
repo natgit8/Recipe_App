@@ -46,13 +46,20 @@
     <h2><%= @recipe.comments.count %>
       Comments</h2>
     <%= render @recipe.comments %>
-    <h3>Add a comment:
-    </h3>
-    <%= render partial: 'comments/form', locals: { comment: @comment } %>
-
-    <p><%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  </div>
+  </br>
 </div>
+<div class="container-fluid">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="panel panel-default col-md-8">
+      <div class="panel-title text-center">
+        <h3>Add a comment:</h3>
+      </div>
+      <div class="panel-body">
+        <%= render partial: 'comments/form', locals: { comment: @comment } %>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>

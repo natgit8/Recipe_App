@@ -1,9 +1,19 @@
 class CommentsController < ApplicationController
+
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @comment = @recipe.comments.create(comment_params)
-    redirect_to recipe_path(@recipe)
+    @comment = Recipe.find(params[:recipe_id]).comments.new(comment_params)
+    @comment.user_id = current_user.id
+    if @comment.save
+      redirect_to recipe_path(@recipe)
+    end 
   end
+
+  def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = @recipe.comments.find(params[:id])
+    @comment.destroy
+    redirect_to recipe_path(@recipe)
+   end
 
 
   private

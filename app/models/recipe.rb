@@ -8,6 +8,8 @@ class Recipe < ApplicationRecord
   # accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   scope :most_recent, -> { order(created_at: :desc)}
+  scope :created_within, ->(time, occurred_at) { where("created_at > ? AND created_at < ?", time, occurred_at) }
+
 
 
   has_attached_file :image, styles: { medium: "300x300>"}
