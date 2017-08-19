@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @ingredients = 4.times.collect { @recipe.ingredients.build }
-    @comments = @recipe.comments.build
+    # @comments = @recipe.comments.build
   end
 
   def create
@@ -35,9 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @comment = Comment.new
-    # @comment = @recipe.comments.build
+    # @comment = Comment.new(recipe: @recipe, user: current_user)
   end
 
   def destroy
