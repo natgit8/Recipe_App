@@ -1,9 +1,10 @@
 <div class="center">
   <div class="row">
+
     <% @recipes.each do |recipe| %>
-    <div class="col-md-3 col-xs-6">
+    <div class="col-md-3 col-sm-6">
       <div class="icon">
-        <div class="thumbnail">
+        <div class="image_wrapper">
           <%= link_to image_tag(recipe.image.url(:medium), class: "img-responsive aspect"), recipe %>
         </div>
         <div class="caption">
