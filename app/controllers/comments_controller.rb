@@ -7,9 +7,8 @@ before_action :find_recipe
   end
 
   def create
-    # @recipe = Recipe.find(params[:recipe_id])
     @comment = @recipe.comments.build(comment_params)
-    # @comment.user_id = current_user.id
+    @comment.user_id = current_user.id
     # byebug
     if @comment.save
       redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"

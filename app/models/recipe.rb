@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   belongs_to :user, optional: true
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
-  has_many :comments, through: :user
+  has_many :comments
 
   # accepts_nested_attributes_for :ingredients, allow_destroy: true
 
