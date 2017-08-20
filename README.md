@@ -6,11 +6,14 @@ This app will allow you to create or browse recipes with the features of adding 
 
 Installation
 
-git clone git@github.com:natgit8/Recipe_App.git
-cd Recipe_App
-bundle install
-rails db:migrate
-rails s
+-git clone git@github.com:natgit8/Recipe_App.git
+-cd Recipe_App
+-bundle install
+-rails db:migrate
+-rails s
+
+OR 
+https://secret-gorge-26337.herokuapp.com/ 
 
 Contributing
 
