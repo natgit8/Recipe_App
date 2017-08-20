@@ -1,4 +1,3 @@
-require 'byebug'
 class CommentsController < ApplicationController
 before_action :find_recipe
 
