@@ -9,12 +9,12 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @ingredients = 4.times.collect { @recipe.ingredients.build }
-    # @comments = @recipe.comments.build
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe = current_user.recipes.build(recipe_params)
+
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been added"
     else

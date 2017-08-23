@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable
   has_many :recipes
   has_many :comments
+  has_many :favorites 
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
