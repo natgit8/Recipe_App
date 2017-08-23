@@ -38,6 +38,7 @@ gem 'paperclip'
 gem 'omniauth-github'
 gem 'masonry-rails'
 gem 'pry'
+gem 'record_tag_helper', '~> 1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

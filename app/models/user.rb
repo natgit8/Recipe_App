@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :omniauthable
   has_many :recipes
   has_many :comments
-  has_many :favorites 
+  has_many :favorites, dependent: :destroy
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -16,5 +17,6 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
 
 end

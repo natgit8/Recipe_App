@@ -34,13 +34,40 @@ class RecipesController < ApplicationController
   end
 
   def show
-    # @comment = Comment.new(recipe: @recipe, user: current_user)
+
   end
+
+  def favorite(user)
+    @favorites << Favorite.new(user: @user)
+  end
+
+# unlike the post
+  def unfavorite(user)
+    @favorites.where(user_id: @user.id).first.destroy
+  end
+
 
   def destroy
     @recipe.destroy
     redirect_to root_path, notice: "Succesfully deleted recipe"
   end
+
+  # def favorite
+  #  type = params[:type]
+  #  if type == "favorite"
+  #    current_user.favorites << @recipe
+  #    redirect_to :back, notice: 'You favorited #{@recipe.name}'
+  #
+  #  elsif type == "unfavorite"
+  #    current_user.favorites.delete(@recipe)
+  #    redirect_to :back, notice: 'Unfavorited #{@recipe.name}'
+  #
+  #  else
+  #    # Type missing, nothing happens
+  #    redirect_to :back, notice: 'Nothing happened.'
+  #   end
+  # end
+
 
   private
 

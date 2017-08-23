@@ -4,7 +4,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
   has_many :comments
-  has_many :favorites 
+  has_many :favorites, dependent: :destroy 
+
 
   # accepts_nested_attributes_for :ingredients, allow_destroy: true
 
@@ -23,6 +24,8 @@ class Recipe < ApplicationRecord
       ingredients << ingredient if ingredient.persisted?
     end
   end
+
+
 
 
 end

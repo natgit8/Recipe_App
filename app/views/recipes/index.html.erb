@@ -10,6 +10,9 @@
         <div class="caption">
           <h3><%= recipe.name %></h3>
         </div>
+        <%= link_to "Favorite", recipe_favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post %>
+        <p>Favorites:
+          <%= recipe.favorites.count %></p>
       </div>
     </div>
     <% end %>
