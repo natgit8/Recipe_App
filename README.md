@@ -11,7 +11,7 @@ Installation
 3.bundle install <br />
 4.rails db:migrate <br />
 5.rails s <br />
-6.http://localhost.3000 </br />
+6.http://localhost.3000/
 
 OR
 https://damp-bayou-88218.herokuapp.com/
