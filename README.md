@@ -11,9 +11,10 @@ Installation
 3.bundle install <br />
 4.rails db:migrate <br />
 5.rails s <br />
+6.http://localhost.3000 </br />
 
-OR 
-https://secret-gorge-26337.herokuapp.com/ 
+OR
+https://damp-bayou-88218.herokuapp.com/
 
 Contributing
 
