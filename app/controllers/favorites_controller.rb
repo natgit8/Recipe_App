@@ -9,17 +9,4 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # def favorite
-  #   @user = current_user
-  #   @recipe = Recipe.find(params[:recipe_id])
-  #   @user.favorite!(@recipe)
-  # end
-  #
-  # def unfavorite
-  #   @user = current_user
-  #   @heart = @user.favorites.find_by_recipe_id(params[:recipe_id])
-  #   @recipe = Recipe.find(params[:recipe_id])
-  #   @favorite.destroy!
-  # end
-
 end

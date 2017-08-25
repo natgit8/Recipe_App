@@ -39,6 +39,7 @@ gem 'omniauth-github'
 gem 'masonry-rails'
 gem 'pry'
 gem 'record_tag_helper', '~> 1.0'
+gem 'active_model_serializers'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -34,7 +34,11 @@ class RecipesController < ApplicationController
   end
 
   def show
-
+    @recipe = Recipe.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @recipe}
+    end
   end
 
   def favorite(user)
@@ -51,22 +55,6 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to root_path, notice: "Succesfully deleted recipe"
   end
-
-  # def favorite
-  #  type = params[:type]
-  #  if type == "favorite"
-  #    current_user.favorites << @recipe
-  #    redirect_to :back, notice: 'You favorited #{@recipe.name}'
-  #
-  #  elsif type == "unfavorite"
-  #    current_user.favorites.delete(@recipe)
-  #    redirect_to :back, notice: 'Unfavorited #{@recipe.name}'
-  #
-  #  else
-  #    # Type missing, nothing happens
-  #    redirect_to :back, notice: 'Nothing happened.'
-  #   end
-  # end
 
 
   private
