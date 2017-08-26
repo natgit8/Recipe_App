@@ -11,3 +11,12 @@
 //     event.preventDefault();
 //   })
 // })
+
+// $(function() {
+//   $("#new_comment").on("submit", function(e) {
+//     //1.we need URL to submit the POST request to
+//
+//     e.preventDefault();
+//     console.log($(this).serialize());
+//   })
+// });

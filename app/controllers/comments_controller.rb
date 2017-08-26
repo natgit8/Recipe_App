@@ -10,7 +10,11 @@ before_action :find_recipe
     @comment.user_id = current_user.id
     # byebug
     if @comment.save
-      redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"
+      # redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"
+      respond_to do |format|
+      format.html { redirect_to recipe_path(@recipe) }
+      format.js
+    end 
     else
       redirect_to recipe_path(@recipe), notice: "Your comment wasn't posted!"
     end
