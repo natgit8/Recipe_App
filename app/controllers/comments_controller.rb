@@ -10,13 +10,11 @@ before_action :find_recipe
     @comment.user_id = current_user.id
     # byebug
     if @comment.save
-      # redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"
-      respond_to do |format|
-      format.html { redirect_to recipe_path(@recipe) }
-      format.js
-    end 
+      redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"
+      # render :partial => "comments/comment", :locals => { :comment => @comment }, :layout => false, :status => :created
     else
-      redirect_to recipe_path(@recipe), notice: "Your comment wasn't posted!"
+      # render :js => "alert('error saving comment');"
+      redirect_to recipe_path(@recipe)
     end
   end
 
@@ -26,6 +24,15 @@ before_action :find_recipe
     @comment.destroy
     redirect_to recipe_path(@recipe)
    end
+
+  # def destroy
+	#   @comment = Comment.find(params[:id])
+	#   if @comment.destroy
+	#     render :json => @comment, :status => :ok
+	#   else
+	#     render :js => "alert('error deleting comment');"
+	#   end
+	# end
 
 
   private

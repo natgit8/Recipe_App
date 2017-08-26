@@ -43,7 +43,6 @@
       </div>
     </div>
   </div>
-
   <div class="comments">
     <h2><%= @recipe.comments.count %>
       Comments</h2>
@@ -51,16 +50,12 @@
       <%= render @recipe.comments %></ol>
   </br>
 </div>
-
-<div class="panel panel-default col-md-6 col-md-offset-3 ">
-  <div class="panel-title text-left">
-    <h3>Add a comment:</h3>
+<div class="container">
+  <div class="row">
+    <div class="comment-box">
+      <div class="col-sm-6 col-sm-offset-2">
+        <%= render partial: 'comments/form', locals: { comment: @comment } %></div>
+    </div>
   </div>
-  <div class="panel-body">
-    <%= render partial: 'comments/form', locals: { comment: @comment } %>
-  </div>
-</div>
-
-</div>
 </div>
 </div>
