@@ -10,11 +10,16 @@
         <div class="caption">
           <h3><%= recipe.name %></h3>
         </div>
-        <%= link_to "Favorite", recipe_favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post %>
+
+        <%= link_to recipe_favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post, class: "btn btn-default" do %>
+        <i class="glyphicon glyphicon-heart"></i>
+        <% end %>
         <p>Favorites:
           <%= recipe.favorites.count %></p>
       </div>
     </div>
     <% end %>
   </div>
+</div>
+</div>
 </div>
