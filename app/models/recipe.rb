@@ -4,17 +4,19 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
   has_many :comments
-  has_many :favorites, dependent: :destroy 
+  has_many :favorites, dependent: :destroy
 
 
-  # accepts_nested_attributes_for :ingredients, allow_destroy: true
+  validates_presence_of :ingredients, :unless => lambda { self.ingredients.blank? }
+
 
   scope :most_recent, -> { order(created_at: :desc)}
   scope :created_within, ->(time, occurred_at) { where("created_at > ? AND created_at < ?", time, occurred_at) }
 
 
 
-  has_attached_file :image, styles: { medium: "300x300>"}
+  has_attached_file :image, styles: { medium: "300x300#"}, :default_url => ActionController::Base.helpers.image_path("defimage.jpg")
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
@@ -24,6 +26,7 @@ class Recipe < ApplicationRecord
       ingredients << ingredient if ingredient.persisted?
     end
   end
+
 
 
 
