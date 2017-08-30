@@ -2,26 +2,23 @@
   <div class="col-md-8 col-md-offset-2">
     <div class='panel panel-default'>
       <div class='panel-heading text'>
-        <p class="recipeImage"><%= image_tag @recipe.image.url(:medium) %></p>
+        <p><%= image_tag @recipe.image.url(:medium) %></p>
       </div>
       <div class="panel-body">
         <h1>
-          <p class="recipeName"><%= @recipe.name %></p>
+          <p><%= @recipe.name %></p>
         </h1>
-        <p class="recipeDescription">
-          <%= @recipe.description %>
-        </p>
-        <p class="recipeIngredients">
+        <p><%= @recipe.description %></p>
+        <p>
           <ol>
             <% @recipe.ingredients.each do |recipe_ingredient| %>
             <li><%= recipe_ingredient.name %></li>
             <% end %>
           </ol>
         </p>
-        <h3>Directions:
-        </h3>
+        <h3>Directions:</h3>
         <ul>
-          <li class="recipeDirections"><%= @recipe.directions %></li>
+          <li><%= @recipe.directions %></li>
         </ul>
       </div>
       <div class="panel-footer" id="recipe-footer">
@@ -36,21 +33,20 @@
               <%= link_to "Delete", recipe_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
-  <div class="container" id="comments">
-    <div class="comment-box">
-      <h2><%= @recipe.comments.count %>Comments</h2>
-      <ol><%= render @recipe.comments %></ol></br>
-    </div>
-  <div class="comment-box" id="comment-box">
-    <div class="col-sm-6 col-sm-offset-2">
-      <div class="comments-form">
-        <%= render partial: 'comments/form', locals: { comment: @comment } %>
-      </div>
-    </div>
-  </div>
-</div>
+
+  <div class="panel panel-default" id="recipe-comments-header">
+            <!-- <h2><%#= @recipe.comments.count %>Comments</h2> -->
+            </div>
+            <div class="panel-body" id="comments-body">
+              <ol><%= render @recipe.comments %></ol></br>
+            </div>
+            <div class='panel panel-default text-left' >
+              <div class='col-sm-2 col-md-offset-2'>
+                <%= render partial: 'comments/form', locals: { comment: @comment } %>
+              </div>
+            </div>
+
 </div>

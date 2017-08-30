@@ -8,12 +8,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @ingredients = Array.new(4) { @recipe.ingredients.build }
+    @ingredients = Array.new(5) { @recipe.ingredients.build }
   end
-
-  # def description
-  #   render plain: @recipe.description
-  # end
 
   def body
     @recipe = Recipe.find(params[:id])

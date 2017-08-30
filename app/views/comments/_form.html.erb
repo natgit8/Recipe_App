@@ -1,6 +1,5 @@
-<div class="container">
+<div class="container" id="comment-form">
   <div class="row">
-    <div class="panel panel-default col-md-4 center">
       <h3>Add a comment:</h3>
       <%= form_for([@recipe, @recipe.comments.build], remote: true) do |f| %>
       <h4><%= f.label :rating %></h4>
@@ -14,5 +13,4 @@
       <p><%= f.submit %></p>
       <% end %>
     </div>
-  </div>
 </div>

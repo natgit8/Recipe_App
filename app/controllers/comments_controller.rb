@@ -14,16 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    # 1st you retrieve the post thanks to params[:post_id]
-    @recipe = Recipe.find(params[:recipe_id])
-    # 2nd you retrieve the comment thanks to params[:id]
-    @comment = recipe.comments.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render xml: @comment }
-    end
- end
+  end 
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
