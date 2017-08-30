@@ -1,14 +1,23 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_recipe, only: %i[show edit update destroy description]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @recipes = Recipe.all.order("created_at DESC")
+    @recipes = Recipe.all.order('created_at DESC')
   end
 
   def new
     @recipe = Recipe.new
-    @ingredients = 4.times.collect { @recipe.ingredients.build }
+    @ingredients = Array.new(4) { @recipe.ingredients.build }
+  end
+
+  # def description
+  #   render plain: @recipe.description
+  # end
+
+  def body
+    @recipe = Recipe.find(params[:id])
+    render plain: recipe.description
   end
 
   def create
@@ -16,20 +25,25 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been added"
+      redirect_to recipe_path(@recipe), notice: 'Your recipe has successfully been added'
     else
       render 'new'
     end
   end
 
   def edit
+    respond_to do |f|
+      f.html { render :edit }
+      f.json { render :edit }
+    end
   end
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: "Your recipe has successfully been updated"
+      redirect_to @recipe, notice: 'Your recipe has successfully been updated'
     else
-      render 'edit'
+      @recipe.save
+      render json: @recipe
     end
   end
 
@@ -37,25 +51,23 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @recipe}
+      format.json { render json: @recipe }
     end
   end
 
-  def favorite(user)
+  def favorite(_user)
     @favorites << Favorite.new(user: @user)
   end
 
-# unlike the post
-  def unfavorite(user)
+  # unlike the post
+  def unfavorite(_user)
     @favorites.where(user_id: @user.id).first.destroy
   end
 
-
   def destroy
     @recipe.destroy
-    redirect_to root_path, notice: "Succesfully deleted recipe"
+    redirect_to root_path, notice: 'Succesfully deleted recipe'
   end
-
 
   private
 
@@ -64,7 +76,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, :directions, :ingredient_ids => [],  :ingredients_attributes => [:name])
+    params.require(:recipe).permit(:name, :description, :image, :directions, ingredient_ids: [], ingredients_attributes: [:name])
   end
-
 end

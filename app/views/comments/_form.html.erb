@@ -2,12 +2,11 @@
   <div class="row">
     <div class="panel panel-default col-md-4 center">
       <h3>Add a comment:</h3>
-      <%= simple_form_for([@recipe, @recipe.comments.build], :remote => true) do |f| %>
+      <%= form_for([@recipe, @recipe.comments.build], remote: true) do |f| %>
       <h4><%= f.label :rating %></h4>
       <p>
         <%= f.number_field :rating %>
       </p>
-
       <h4><%= f.label :comment %></h4>
       <p>
         <%= f.text_area :body %>

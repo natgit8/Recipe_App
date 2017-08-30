@@ -2,16 +2,16 @@
   <div class="col-md-8 col-md-offset-2">
     <div class='panel panel-default'>
       <div class='panel-heading text'>
-        <%= image_tag @recipe.image.url(:medium) %>
+        <p class="recipeImage"><%= image_tag @recipe.image.url(:medium) %></p>
       </div>
       <div class="panel-body">
         <h1>
-          <%= @recipe.name %>
+          <p class="recipeName"><%= @recipe.name %></p>
         </h1>
-        <p class="description">
+        <p class="recipeDescription">
           <%= @recipe.description %>
         </p>
-        <p class="ingredients">
+        <p class="recipeIngredients">
           <ol>
             <% @recipe.ingredients.each do |recipe_ingredient| %>
             <li><%= recipe_ingredient.name %></li>
@@ -21,19 +21,16 @@
         <h3>Directions:
         </h3>
         <ul>
-          <li><%= @recipe.directions %></li>
+          <li class="recipeDirections"><%= @recipe.directions %></li>
         </ul>
       </div>
-
-      <div class="panel-footer">
+      <div class="panel-footer" id="recipe-footer">
         <div class="row">
           <div class="col-md-6">
             <p class="user"></p>
-
           </div>
           <div class="col-md-6">
             <div class="btn-group pull-right">
-
               <%= link_to "Back", root_path, class: "btn btn-default" %>
               <%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
               <%= link_to "Delete", recipe_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
@@ -43,18 +40,16 @@
       </div>
     </div>
   </div>
-  <div class="comments">
-    <h2><%= @recipe.comments.count %>
-      Comments</h2>
-    <ol>
-      <%= render @recipe.comments %></ol>
-  </br>
-</div>
-<div class="container">
-  <div class="row">
+  <div class="container" id="comments">
     <div class="comment-box">
-      <div class="col-sm-6 col-sm-offset-2">
-        <%= render partial: 'comments/form', locals: { comment: @comment } %></div>
+      <h2><%= @recipe.comments.count %>Comments</h2>
+      <ol><%= render @recipe.comments %></ol></br>
+    </div>
+  <div class="comment-box" id="comment-box">
+    <div class="col-sm-6 col-sm-offset-2">
+      <div class="comments-form">
+        <%= render partial: 'comments/form', locals: { comment: @comment } %>
+      </div>
     </div>
   </div>
 </div>

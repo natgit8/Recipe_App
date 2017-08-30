@@ -1,17 +1,15 @@
-<div class="comment" id="comment-<%= comment.id %>"></div>
+<div id="comment_<%= comment.id %>">
 <hr/>
-
-<h4>Comment:</h4>
-
-<%= comment.body %>
-<h4>Rating:</h4>
-<%= comment.rating %>
-
+  <h4>Comment:</h4>
+  <%= comment.body %>
+  <h4>Rating:</h4>
+  <%= comment.rating %>
 <br>
-  <strong>Date:
-  </strong><%= comment.created_at.strftime("%m/%d/%Y") %>
-</br>By:
-<%=comment.user.email%></p>
-<p><%= link_to 'Delete', [@recipe, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
-
+  <strong>Date:</strong> <%= comment.created_at.strftime("%m/%d/%Y") %>
+</br>
+  By: <%=comment.user.email%></p>
+</br>
+<%= button_to(recipe_comment_path(@recipe.id,comment.id), {method: :delete, remote: true, class:"btn btn-danger delete-comment-button pull-left", params:{id: comment.id, recipe: @recipe.id}} ) do%>
+<i class="glyphicon glyphicon-trash"></i>
+<% end %>
 </div>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-before_action :find_recipe
+  before_action :find_recipe
 
   def new
     @comment = Comment.new
@@ -8,21 +8,32 @@ before_action :find_recipe
   def create
     @comment = @recipe.comments.build(comment_params)
     @comment.user_id = current_user.id
-    # byebug
     if @comment.save
-      redirect_to recipe_path(@recipe), notice: "Your comment was successfully posted!"
-    else
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: 'Your comment was successfully posted!'
     end
   end
+
+  def show
+    # 1st you retrieve the post thanks to params[:post_id]
+    @recipe = Recipe.find(params[:recipe_id])
+    # 2nd you retrieve the comment thanks to params[:id]
+    @comment = recipe.comments.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render xml: @comment }
+    end
+ end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
-    redirect_to recipe_path(@recipe)
+    respond_to do |format|
+      format.html { redirect_to(recipe_path(id: params[:recipe_id])) }
+      format.js
+    end
    end
-
 
   private
 
@@ -33,6 +44,4 @@ before_action :find_recipe
   def comment_params
     params.require(:comment).permit(:rating, :body, :recipe_id)
   end
-
-
 end
