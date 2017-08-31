@@ -11,11 +11,6 @@ class RecipesController < ApplicationController
     @ingredients = Array.new(5) { @recipe.ingredients.build }
   end
 
-  def body
-    @recipe = Recipe.find(params[:id])
-    render plain: recipe.description
-  end
-
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe = current_user.recipes.build(recipe_params)
@@ -28,10 +23,10 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    respond_to do |f|
-      f.html { render :edit }
-      f.json { render :edit }
-    end
+    # respond_to do |f|
+    #   f.html { render :edit }
+    #   f.json { render :edit }
+    # end
   end
 
   def update
@@ -49,6 +44,11 @@ class RecipesController < ApplicationController
       format.html { render :show }
       format.json { render json: @recipe }
     end
+  end
+
+  def data
+    @recipe = Recipe.find(params[:id])
+    render json: RecipeSerializer.serialize(recipe)
   end
 
   def favorite(_user)

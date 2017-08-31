@@ -1,15 +1,16 @@
+<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe</a>
 <div class="row" id="recipe_show">
   <div class="col-md-8 col-md-offset-2">
     <div class='panel panel-default'>
       <div class='panel-heading text'>
-        <p><%= image_tag @recipe.image.url(:medium) %></p>
+        <p class="recipeImage"><%= image_tag @recipe.image.url(:medium) %></p>
       </div>
       <div class="panel-body">
         <h1>
-          <p><%= @recipe.name %></p>
+          <p class="recipeName"><%= @recipe.name %></p>
         </h1>
-        <p><%= @recipe.description %></p>
-        <p>
+        <p class="recipeDescription"><%= @recipe.description %></p>
+        <p class="recipeIngredients">
           <ol>
             <% @recipe.ingredients.each do |recipe_ingredient| %>
             <li><%= recipe_ingredient.name %></li>
@@ -18,7 +19,7 @@
         </p>
         <h3>Directions:</h3>
         <ul>
-          <li><%= @recipe.directions %></li>
+          <li class="recipeDirections"><%= @recipe.directions %></li>
         </ul>
       </div>
       <div class="panel-footer" id="recipe-footer">
@@ -37,16 +38,33 @@
     </div>
   </div>
 
-  <div class="panel panel-default" id="recipe-comments-header">
+  <!-- <div class="panel panel-default" id="recipe-comments-header"> -->
             <!-- <h2><%#= @recipe.comments.count %>Comments</h2> -->
-            </div>
-            <div class="panel-body" id="comments-body">
-              <ol><%= render @recipe.comments %></ol></br>
-            </div>
-            <div class='panel panel-default text-left' >
-              <div class='col-sm-2 col-md-offset-2'>
-                <%= render partial: 'comments/form', locals: { comment: @comment } %>
-              </div>
-            </div>
-
+            <!-- </div> -->
+  <div class="panel-body" id="comments-body">
+    <ol><%= render @recipe.comments %></ol></br>
+  </div>
+  <div class='panel panel-default text-left' >
+    <div class='col-sm-2 col-md-offset-2'>
+      <%= render partial: 'comments/form', locals: { comment: @comment } %>
+    </div>
+  </div>
 </div>
+
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/recipes/" + nextId + ".json", function(data) {
+      var recipe = data;
+      $(".recipeName").text(recipe["name"]);
+      $(".recipeDescription").text(recipe["description"]);
+      $(".recipeIngredients").text(recipe["ingredients"]);
+      $(".recipeDirections").text(recipe["directions"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", recipe["id"]);
+    });
+  });
+});
+</script>

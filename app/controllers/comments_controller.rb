@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-  end 
+  end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
