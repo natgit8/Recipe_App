@@ -55,6 +55,7 @@
       $.get("/recipes/" + nextId + ".json", function(data) {
         var recipe = data;
         $(".recipeName").text(recipe["name"]);
+        $(".recipeImage").attr(recipe["image"]);
         $(".recipeDescription").text(recipe["description"]);
         $(".recipeIngredients").text(recipe["ingredients"]);
         $(".recipeDirections").text(recipe["directions"]);
