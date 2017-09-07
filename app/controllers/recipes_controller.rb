@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @recipes = Recipe.all.order('created_at DESC')
+    @recipes = Recipe.all.order('created_at ASC')
   end
 
   def new
@@ -23,10 +23,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    # respond_to do |f|
-    #   f.html { render :edit }
-    #   f.json { render :edit }
-    # end
+
   end
 
   def update
@@ -41,7 +38,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
-      format.html { render :show }
+      format.html
       format.json { render json: @recipe }
     end
   end

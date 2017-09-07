@@ -21,8 +21,11 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to(recipe_path(id: params[:recipe_id])) }
+      format.html
       format.js
+      # format.html { redirect_to(recipe_path(id: params[:recipe_id])) }
+      # format.json { render json: @recipe}
+      # format.js
     end
    end
 
