@@ -50,11 +50,6 @@ class RecipesController < ApplicationController
     end
   end 
 
-  # def data
-  #   @recipe = Recipe.find(params[:id])
-  #   render json: RecipeSerializer.serialize(recipe)
-  # end
-
   def favorite(_user)
     @favorites << Favorite.new(user: @user)
   end

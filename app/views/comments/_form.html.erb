@@ -2,7 +2,8 @@
   <div class="row">
       <h3>Add a comment:</h3>
       <%= form_for([@recipe, @recipe.comments.build]) do |f| %>
-      <h4><%= f.label :rating %></h4>
+      <h4><%= f.label :rating %> (1-5)</h4>
+
       <p>
         <%= f.number_field :rating %>
       </p>

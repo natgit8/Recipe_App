@@ -5,10 +5,10 @@
   <strong> Rating: </strong><%= comment.rating %>
 
 
-<%= button_to(recipe_comment_path(@recipe.id,comment.id), {method: :delete, class:"btn btn-danger delete-comment-button pull-right", params:{id: comment.id, recipe: @recipe.id}} ) do%>
+<%= button_to(recipe_comment_path(@recipe.id,comment.id), {method: :delete, class:"btn btn-danger delete-comment-button pull-right", params:{id: comment.id, recipe: @recipe.id}, data: {recipe: @recipe.id, comment: comment.id}} ) do%>
 <i class="glyphicon glyphicon-trash"></i>
   <% end %>
-  
+
 </div>
 </br>
 <hr/>
