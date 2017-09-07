@@ -38,15 +38,15 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
-      format.html
+      format.html { render :show }
       format.json { render json: @recipe }
     end
   end
 
-  def data
-    @recipe = Recipe.find(params[:id])
-    render json: RecipeSerializer.serialize(recipe)
-  end
+  # def data
+  #   @recipe = Recipe.find(params[:id])
+  #   render json: RecipeSerializer.serialize(recipe)
+  # end
 
   def favorite(_user)
     @favorites << Favorite.new(user: @user)

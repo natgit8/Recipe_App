@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :find_recipe
+  before_action :find_recipe, :find_recipe_comment
+
+  def index
+    @comments = @recipes.comments
+  end
 
   def new
     @comment = Comment.new
@@ -17,15 +21,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
-    @comment = @recipe.comments.find(params[:id])
+    # @recipe = Recipe.find(params[:recipe_id])
+    # @comment = @recipe.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html
+      # format.html
+      format.html { redirect_to(recipe_path(id: params[:recipe_id])}
+      format.json { render json: @recipe, :layout => false }
       format.js
-      # format.html { redirect_to(recipe_path(id: params[:recipe_id])) }
-      # format.json { render json: @recipe}
-      # format.js
     end
    end
 
@@ -33,6 +36,10 @@ class CommentsController < ApplicationController
 
   def find_recipe
     @recipe = Recipe.find(params[:recipe_id])
+  end
+
+  def find_recipe_comment
+    @comment = @recipe.comments.find(params[:id])
   end
 
   def comment_params

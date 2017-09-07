@@ -48,20 +48,19 @@
   </div>
 </div>
 
-
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/recipes/" + nextId + ".json", function(data) {
-      var recipe = data;
-      $(".recipeName").text(recipe["name"]);
-      $(".recipeDescription").text(recipe["description"]);
-      $(".recipeIngredients").text(recipe["ingredients"]);
-      $(".recipeDirections").text(recipe["directions"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", recipe["id"]);
+<script type="text/javascript">
+  $(function () {
+    $(".js-next").on("click", function() {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      $.get("/recipes/" + nextId + ".json", function(data) {
+        var recipe = data;
+        $(".recipeName").text(recipe["name"]);
+        $(".recipeDescription").text(recipe["description"]);
+        $(".recipeIngredients").text(recipe["ingredients"]);
+        $(".recipeDirections").text(recipe["directions"]);
+        // re-set the id to current on the link
+        $(".js-next").attr("data-id", recipe["id"]);
+      });
     });
   });
-});
 </script>

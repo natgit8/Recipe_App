@@ -16,16 +16,12 @@
 //= require turbolinks
 //= require_tree .
 
-// $(document).ready(function() {
-//   if (confirm('Are you sure?')) {
-//     $('.destroy').on('click', function() {
-//       $.ajax({
-//         url: '/recipes/' + this.parentElement.id,
-//         type: 'DELETE',
-//         success: function(r) {
-//
-//         }
-//       });
-//     });
-//   };
-// });
+
+$.ajax({
+  url : ('/recipes/:recipe_id/comments/:id'),
+  type : 'DELETE',
+  dataType : 'json',
+  success : function(e) {
+    alert("You just clicked delete button!");
+  }
+});

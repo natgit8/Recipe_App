@@ -1,6 +1,6 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :directions
+  attributes :name, :description, :directions
   has_many :ingredients, serializer: RecipeIngredientSerializer
-  has_many :comments, serializer: CommentSerializer 
+  has_many :comments, serializer: CommentSerializer
 
 end
