@@ -13,7 +13,10 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to recipe_path(@recipe), notice: 'Your comment was successfully posted!'
+      # redirect_to recipe_path(@recipe), notice: 'Your comment was successfully posted!'
+      render 'comments/show', :layout => false
+    else
+      render 'recipes/show'
     end
   end
 
@@ -24,7 +27,11 @@ class CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
-    redirect_to recipe_path(@recipe)
+    # redirect_to recipe_path(@recipe)
+    respond_to do |format|
+       format.html {redirect_to recipe_path(id: params[:recipe_id])}
+       format.js
+     end
    end
 
   private
@@ -34,6 +41,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:id, :rating, :body, :recipe_id)
+    params.require(:comment).permit(:rating, :body, :recipe_id)
   end
 end

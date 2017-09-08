@@ -38,10 +38,10 @@
     </div>
   </div>
 
-  <div class="panel-body" id="comments-body">
+  <div class= "comments-body">
     <ol><%= render @recipe.comments %></ol></br>
   </div>
-  <div class='panel panel-default text-left' >
+  <div class='panel panel-default text-left' id="comments-form">
     <div class='col-sm-2 col-md-offset-2'>
       <%= render partial: 'comments/form', locals: { comment: @comment } %>
     </div>
