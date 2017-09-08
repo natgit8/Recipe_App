@@ -37,18 +37,18 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    respond_to do |f|
-      f.html { render :show }
-      f.json { render json: @recipe }
-    end
+    # respond_to do |f|
+    #   f.html { render :show }
+    #   f.json { render json: @recipe }
+    # end
   end
 
   def edit
-    respond_to do |f|
-      f.html { render :edit }
-      f.json { render :edit }
-    end
-  end 
+    # respond_to do |f|
+    #   f.html { render :edit }
+    #   f.json { render :edit }
+    # end
+  end
 
   def favorite(_user)
     @favorites << Favorite.new(user: @user)

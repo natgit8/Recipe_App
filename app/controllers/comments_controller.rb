@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   before_action :find_recipe
 
-  def index
-    @comments = @recipes.comments
-  end
+  # def index
+  #   @comments = @recipes.comments
+  # end
 
   def new
     @comment = Comment.new
@@ -24,12 +24,7 @@ class CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
-    redirect_to recipe_path
-    # respond_to do |format|
-    #   format.html { redirect_to(recipe_path(id: params[:recipe_id])}
-    #   format.json { render json: @recipe }
-    #   format.js
-    # end
+    redirect_to recipe_path(@recipe)
    end
 
   private
@@ -39,6 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:rating, :body, :recipe_id)
+    params.require(:comment).permit(:id, :rating, :body, :recipe_id)
   end
 end

@@ -17,11 +17,11 @@
 //= require_tree .
 
 
-$.ajax({
-  url : ('/recipes/:recipe_id/comments/:id'),
-  type : 'DELETE',
-  dataType : 'json',
-  success : function(e) {
-    alert("You just clicked delete button!");
-  }
-});
+// $.ajax({
+//   url : ('/recipes/:recipe_id/comments/:id'),
+//   type : 'DELETE',
+//   dataType : 'json',
+//   success : function(e) {
+//     alert("You just clicked delete button!");
+//   }
+// });
