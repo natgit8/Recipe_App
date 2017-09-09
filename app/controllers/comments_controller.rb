@@ -29,8 +29,8 @@ class CommentsController < ApplicationController
     @comment.destroy
     # redirect_to recipe_path(@recipe)
     respond_to do |format|
-       format.html {redirect_to recipe_path(id: params[:recipe_id])}
-       format.js
+       format.html
+       format.json
      end
    end
 

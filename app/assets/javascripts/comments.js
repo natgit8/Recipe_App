@@ -1,42 +1,32 @@
 
 
 
-// $(function(){
-//   $('.button_to').on('click', function(e) {
-//     // console.log($(this))
-//     url = this.action
-//     console.log(url);
-//     // const recipeId = //the data attribute of the recipe id
-//     // const commentId = //the data atrtribute of the comment id
-//     //
-//     $.ajax({
-//       url: url,
-//       data: { }
-//       method: 'DELETE'
-//     })
-//     alert('you clicked delete button')
-//     e.preventDefault();
-//   })
-// })
+$(function(){
+  $('.button_to').on('click', function(e) {
+    e.preventDefault();
+    url = this.action
+    console.log(url);
 
-// $(function(){
-//   $('.new_comment').on('submit', function(e) {
-//     $.ajax({
-//       type: 'POST',
-//       url: this.action,
-//       data = $(this).serialize();
-//       success: function(response) {
-//         $('#comment_body').val();
-//         $('#comment_rating').val();
-//       $('.new_comment').append(response);
-//     })
-//   })
-// })
+    $.ajax({
+      url: url,
+      data: {'comment[body]': $('#comment_body').val(),
+             'comment[rating]': $('#comment_rating').val(),
+           },
+      method: 'DELETE',
+    success: function(data) {
+      alert('you clicked delete button');
+      $(`${e.target.parentElement.parentElement.id}`).remove();
+      }
+    });
+  })
+})
+
 
 $(function(){
   $('.new_comment').on('submit', function(e) {
+    e.preventDefault();
     url = this.action
-    console.log(url);
+    // console.log(url);
     $.ajax({
       type: 'POST',
       url: url,
@@ -44,18 +34,10 @@ $(function(){
              'comment[rating]': $('#comment_rating').val(),
            },
       success: function(response) {
-        alert('you clicked submit!')
-        $('.comments-body').append(response)
         // debugger
+        $('.comments-body ol').append(response)
         }
     });
-    e.preventDefault();
+    $('.new_comment').trigger("reset")
   })
 })
-
-
-// success: function(response) {
-//         // debugger;
-//         $('.new_comment').serialize(), function(data) {
-//           $('.new_comment').append(data);
-//         };
