@@ -1,10 +1,15 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: %i[show edit update destroy description]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show testing]
 
   def index
     @recipes = Recipe.all.order('created_at ASC')
   end
+
+  # def testing
+  #   @recipes = Recipe.all.order('created_at ASC')
+  #   render json: @recipes
+  # end
 
   def new
     @recipe = Recipe.new

@@ -28,10 +28,11 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
     # redirect_to recipe_path(@recipe)
-    respond_to do |format|
-       format.html
-       format.json
-     end
+    render json: {}, status: :no_content
+    # respond_to do |format|
+    #    format.html
+    #    format.json
+    #  end
    end
 
   private

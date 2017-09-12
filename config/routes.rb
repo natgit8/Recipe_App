@@ -4,9 +4,8 @@ Rails.application.routes.draw do
     resources :comments
     resources :favorites, only: :create
   end
-
   resources :ingredients
-
+  get '/testing', to: 'recipes#testing'
   root 'recipes#index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
