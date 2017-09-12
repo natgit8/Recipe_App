@@ -12,11 +12,15 @@
 //   })
 // })
 
-// $(function() {
-//   $("#new_comment").on("submit", function(e) {
-//     //1.we need URL to submit the POST request to
-//
-//     e.preventDefault();
-//     console.log($(this).serialize());
-//   })
-// });
+$(() => {
+  bindClickHandlers()
+})
+
+const bindClickHandlers = () => {
+  $('.all_recipes').on('click', (e) => {
+    e.preventDefault()
+    fetch(`/recipes.json`)
+      .then(res => res.json())
+      .then(data => console.log(data))
+  })
+}

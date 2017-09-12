@@ -4,6 +4,10 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all.order('created_at ASC')
+    respond_to do |f|
+      f.html
+      f.json { render json: @recipes }
+    end
   end
 
   # def testing

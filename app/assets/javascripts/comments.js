@@ -1,6 +1,7 @@
 $(function(){
   $('.button_to').on('click', function(e) {
     e.preventDefault();
+    e.preventPropagation();
     url = this.action
     console.log(url);
 
