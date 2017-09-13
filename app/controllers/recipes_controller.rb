@@ -61,6 +61,7 @@ class RecipesController < ApplicationController
 
   def favorite(_user)
     @favorites << Favorite.new(user: @user)
+    # render json: @favorites 
   end
 
   # unlike the post

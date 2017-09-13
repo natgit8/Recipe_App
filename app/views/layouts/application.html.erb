@@ -10,20 +10,24 @@
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-brand">
-        <%= link_to "Recipe App", root_path, class: "all_recipes" %>
+        <%= link_to "Recipe Home", root_path %>
       </div>
+
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <%= link_to "New Recipe", new_recipe_path %>
-        </li>
-        <li>
-          <%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-        <li>
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-        </li>
-        <li><%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %></li>
+        <li><%= link_to "Recipes", recipes_path, class: "all_recipes" %></li>
+        <li><%= link_to "New Recipe", new_recipe_path %></li>
+
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Account</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="/users/sign_up">Sign Up</a>
+          <a href="/users/sign_in">Sign In</a>
+          <a rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
+          <a href="/users/auth/github">Sign in with GitHub</a>
+        </div>
+      </div>
       </ul>
+
     </div>
   </nav>
   <div class="container">

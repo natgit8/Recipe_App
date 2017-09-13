@@ -12,13 +12,14 @@
 //   })
 // })
 
-$(() => {
+$(function() {
   bindClickHandlers()
 })
 
 const bindClickHandlers = () => {
   $('.all_recipes').on('click', (e) => {
     e.preventDefault()
+    history.pushState(null, null, "recipes")
     fetch(`/recipes.json`)
       .then(res => res.json())
       .then(data => {
@@ -26,9 +27,10 @@ const bindClickHandlers = () => {
         // debugger
         data.data.forEach( recipe => {
           let newRecipe = new Recipe(recipe)
-          let postHtml = newRecipe.formatIndex()
-          $('#app-container').append(postHtml)
           // console.log(newRecipe)
+          let postHtml = newRecipe.formatIndex()
+          // console.log(postHtml)
+          $('#app-container').append(postHtml)
         })
       })
     })
@@ -36,15 +38,27 @@ const bindClickHandlers = () => {
 
 function Recipe(recipe) {
   this.id = recipe.id
-  this.name = recipe.name
-  this.image = recipe.image
-  this.description = recipe.description
-  this.directions = recipe.directions
-  this.ingredients = recipe.ingredients
-  this.comments = recipe.comments
+  this.name = recipe.attributes.name
+  this.image = recipe.attributes.image
+  // this.description = recipe.description
+  // this.directions = recipe.directions
+  // this.ingredients = recipe.ingredients
+  // this.comments = recipe.comments
 }
 
-Recipe.prototype.formatIndex = () => {
-  let postHtml = `<h1>${this.name}</h1>`
+Recipe.prototype.formatIndex = function(){
+  // debugger
+  console.log(this)
+  let postHtml = `
+      <div class="container center"><a href="/recipes/${this.id}"><h1>${this.name}</h1></a>
+      <img src="${this.image}" height="250" width="300"></div>
+      `
   return postHtml
 }
+
+//
+//
+// const htmlGenerator = (response) =>{
+//   let allRecipes = response.data.map((recipe)=>`<li>${recipe.attributes.name}</li>`)
+//   // document.getElementById("messingAround").innerHTML=(allRecipes)
+// }
