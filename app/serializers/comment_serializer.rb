@@ -1,4 +1,4 @@
 class CommentSerializer < ActiveModel::Serializer
-  attribute :id
-  belongs_to :recipe, serializer: RecipeCommentSerializer
+  attribute :id, :body, :rating
+  belongs_to :recipe
 end

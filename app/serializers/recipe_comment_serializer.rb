@@ -1,3 +1,3 @@
 class RecipeCommentSerializer < ActiveModel::Serializer
-   attributes :body, :rating 
+   attributes :id, :body, :rating 
 end

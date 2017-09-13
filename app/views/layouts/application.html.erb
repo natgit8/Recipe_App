@@ -30,8 +30,9 @@
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert" %>
     <% end %>
+    <div id="app-container"></div>
     <%= yield %>
   </div>
-  <div id="fuckingAround"></div>
+
 
 </body>

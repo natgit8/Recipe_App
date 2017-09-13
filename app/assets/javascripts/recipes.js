@@ -21,6 +21,30 @@ const bindClickHandlers = () => {
     e.preventDefault()
     fetch(`/recipes.json`)
       .then(res => res.json())
-      .then(data => console.log(data))
-  })
+      .then(data => {
+        $('#app-container').html('')
+        // debugger
+        data.data.forEach( recipe => {
+          let newRecipe = new Recipe(recipe)
+          let postHtml = newRecipe.formatIndex()
+          $('#app-container').append(postHtml)
+          // console.log(newRecipe)
+        })
+      })
+    })
+  }
+
+function Recipe(recipe) {
+  this.id = recipe.id
+  this.name = recipe.name
+  this.image = recipe.image
+  this.description = recipe.description
+  this.directions = recipe.directions
+  this.ingredients = recipe.ingredients
+  this.comments = recipe.comments
+}
+
+Recipe.prototype.formatIndex = () => {
+  let postHtml = `<h1>${this.name}</h1>`
+  return postHtml
 }
