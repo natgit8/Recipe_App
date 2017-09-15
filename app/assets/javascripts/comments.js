@@ -1,7 +1,6 @@
 $(function(){
   $('.button_to').on('click', function(e) {
     e.preventDefault();
-    e.preventPropagation();
     url = this.action
     console.log(url);
 
@@ -13,8 +12,9 @@ $(function(){
       method: 'DELETE',
     success: function(data) {
       alert('you clicked delete button');
-      debugger
-      $('#' + `${e.target.parentElement.parentElement.id}`).remove();
+      debugger 
+      let comment_id = $(`#${e.target.parentElement.parentElement.id}`)
+      // comment_id.remove();
       }
     });
   })

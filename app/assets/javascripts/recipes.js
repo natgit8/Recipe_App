@@ -34,30 +34,54 @@ const bindClickHandlers = () => {
         })
       })
     })
+    $(document).on('click', ".show_link", function(e) {
+      e.preventDefault();
+      $('#app-container').html('')
+      let id = $(this).attr('data-id')
+      fetch(`/recipes/${id}.json`)
+      // alert("YOU CLICKED SHOW LINK")
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data)
+        let newRecipe = new Recipe(data.data)
+        // console.log(newRecipe)
+        let postHtml = newRecipe.formatShow()
+        // console.log(postHtml)
+        // debugger
+        $('#app-container').append(postHtml)
+      })
+    })
   }
 
 function Recipe(recipe) {
   this.id = recipe.id
   this.name = recipe.attributes.name
   this.image = recipe.attributes.image
-  // this.description = recipe.description
-  // this.directions = recipe.directions
+  this.description = recipe.attributes.description
+  this.directions = recipe.attributes.directions
   // this.ingredients = recipe.ingredients
-  // this.comments = recipe.comments
+
 }
 
+
+
 Recipe.prototype.formatIndex = function(){
-  // debugger
-  console.log(this)
+  // console.log(this)
   let postHtml = `
-      <div class="container center"><a href="/recipes/${this.id}"><h1>${this.name}</h1></a>
-      <img src="${this.image}" height="250" width="300"></div>
+      <a href="/recipes/${this.id}" data-id="${this.id}" class="show_link"><h1>${this.name}</h1></a>
+      <img src="${this.image}" height="250" width="300">
       `
   return postHtml
 }
 
-//
-//
+Recipe.prototype.formatShow = function(){
+  let postHtml = `
+    <h3>${this.name}</h3>
+  `
+  return postHtml
+}
+
+
 // const htmlGenerator = (response) =>{
 //   let allRecipes = response.data.map((recipe)=>`<li>${recipe.attributes.name}</li>`)
 //   // document.getElementById("messingAround").innerHTML=(allRecipes)
