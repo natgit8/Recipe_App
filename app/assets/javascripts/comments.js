@@ -6,7 +6,7 @@ $(function(){
       method: 'DELETE',
     success: function() {
       alert('you clicked delete button');
-      debugger
+      // debugger
       $('#' + `${e.target.parentElement.parentElement.id}`).remove();
       }
     });
