@@ -29,10 +29,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     # redirect_to recipe_path(@recipe)
     render json: {}, status: :no_content
-    # respond_to do |format|
-    #    format.html
-    #    format.json
-    #  end
+    # render 'comments/destroy', :layout => false
    end
 
   private

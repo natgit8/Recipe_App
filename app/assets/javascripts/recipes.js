@@ -5,13 +5,6 @@
 // isFitWidth: true
 
 
-// $(document).ready(function() {
-//   $("#button").click(function(event) {
-//     $("#new-form").append(newForm);
-//     event.preventDefault();
-//   })
-// })
-
 $(function() {
   bindClickHandlers()
 })
@@ -24,7 +17,6 @@ const bindClickHandlers = () => {
       .then(res => res.json())
       .then(data => {
         $('#app-container').html('')
-        // debugger
         data.data.forEach( recipe => {
           let newRecipe = new Recipe(recipe)
           // console.log(newRecipe)
