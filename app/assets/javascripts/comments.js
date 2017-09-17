@@ -4,10 +4,9 @@ $(function(){
     $.ajax({
       url: this.action,
       method: 'DELETE',
-    success: function() {
-      alert('you clicked delete button');
-      // debugger
-      $('#' + `${e.target.parentElement.parentElement.id}`).remove();
+    success: function(response) {
+      console.log('delete successful', response);
+      $(`div#${e.target.id}`).remove();
       }
     });
   })

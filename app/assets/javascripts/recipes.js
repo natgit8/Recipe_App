@@ -73,7 +73,6 @@ Recipe.prototype.formatShow = function(){
   return postHtml
 }
 
-
 // const htmlGenerator = (response) =>{
 //   let allRecipes = response.data.map((recipe)=>`<li>${recipe.attributes.name}</li>`)
 //   // document.getElementById("messingAround").innerHTML=(allRecipes)

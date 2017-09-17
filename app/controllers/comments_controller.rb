@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     if @comment.save
       # redirect_to recipe_path(@recipe), notice: 'Your comment was successfully posted!'
       render 'comments/show', :layout => false
+      # render json: @comment
     else
       render 'recipes/show'
     end
@@ -24,11 +25,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
+
     @comment = @recipe.comments.find(params[:id])
     @comment.destroy
     # redirect_to recipe_path(@recipe)
-    render json: {}, status: :no_content
+    render json: @recipe.comments
+    #{}, status: :no_content
     # render 'comments/destroy', :layout => false
    end
 

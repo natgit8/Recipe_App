@@ -9,4 +9,10 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
+  namespace :api do
+    namespace :v1 do
+      resources :recipes
+    end
+  end
 end
