@@ -36,8 +36,6 @@ const bindClickHandlers = () => {
         // console.log(data)
         let newRecipe = new Recipe(data.data)
 
-        // let recipeIngredient = newRecipe.ingredients.forEach(function(element){ console.log(element.name) })
-
         let postHtml = newRecipe.formatShow()
         $('#app-container').append(postHtml)
       })
@@ -45,8 +43,10 @@ const bindClickHandlers = () => {
 
     $(document).on("click", ".next-recipe", function() {
       let id = $(this).attr('data-id')
-      // debugger 
       fetch(`recipes/${id}/next`)
+      //   .then((resp) => resp.json())
+      //   // debugger
+      // $('.next-recipe').append()
     })
   }
 
@@ -77,8 +77,11 @@ Recipe.prototype.formatShow = function(){
     <h2>${this.name}</h2>
     <img src="${this.image}" height="250" width="300">
     <h4> ${this.ingredients.map(function(element){return `<li>${element.name}</li>` }).join('')} </h4>
-    <button class="next-recipe">Next</button>
+
   `
 
   return postHtml
 }
+
+
+//adding next button from API <button class="next-recipe" data-id="${this.id}">Next</button>
