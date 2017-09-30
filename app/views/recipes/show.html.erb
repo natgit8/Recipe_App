@@ -1,4 +1,4 @@
-<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe</a>
+<%= link_to("Next Recipe", @recipe.next) if @recipe.next %>
 <div class="row" id="recipe_show">
   <div class="col-md-8 col-md-offset-2">
     <div class='panel panel-default'>
@@ -47,21 +47,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(function () {
-    $(".js-next").on("click", function() {
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.get("/recipes/" + nextId + ".json", function(data) {
-        var recipe = data;
-        $(".recipeName").text(recipe["name"]);
-        $(".recipeImage").attr(recipe["image"]);
-        $(".recipeDescription").text(recipe["description"]);
-        $(".recipeIngredients").text(recipe["ingredients"]);
-        $(".recipeDirections").text(recipe["directions"]);
-        // re-set the id to current on the link
-        $(".js-next").attr("data-id", recipe["id"]);
-      });
-    });
-  });
-</script>

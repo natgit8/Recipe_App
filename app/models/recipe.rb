@@ -1,4 +1,3 @@
-# require 'byebug'
 class Recipe < ApplicationRecord
   belongs_to :user, optional: true
   has_many :recipe_ingredients
@@ -28,7 +27,15 @@ class Recipe < ApplicationRecord
   end
 
 
+  def next
+    recipe = Recipe.where("id > ?", id).first
 
+    if recipe
+      recipe
+    else
+      Recipe.first
+    end
 
+  end
 
 end

@@ -4,15 +4,18 @@ Rails.application.routes.draw do
     resources :comments
     resources :favorites, only: :create
   end
+
   resources :ingredients
-  get '/testing', to: 'recipes#testing'
+  get 'recipes/:id/next', to: 'recipes#next'
   root 'recipes#index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  namespace :api do
-    namespace :v1 do
-      resources :recipes
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :recipes
+  #   end
+  # end
+
+
 end

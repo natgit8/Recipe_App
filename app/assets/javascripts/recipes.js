@@ -21,7 +21,6 @@ const bindClickHandlers = () => {
           let newRecipe = new Recipe(recipe)
           // console.log(newRecipe)
           let postHtml = newRecipe.formatIndex()
-          // console.log(postHtml)
           $('#app-container').append(postHtml)
         })
       })
@@ -36,44 +35,50 @@ const bindClickHandlers = () => {
       .then(data => {
         // console.log(data)
         let newRecipe = new Recipe(data.data)
-        // console.log(newRecipe)
+
+        // let recipeIngredient = newRecipe.ingredients.forEach(function(element){ console.log(element.name) })
+
         let postHtml = newRecipe.formatShow()
-        // console.log(postHtml)
-        // debugger
         $('#app-container').append(postHtml)
       })
     })
+
+    $(document).on("click", ".next-recipe", function() {
+      let id = $(this).attr('data-id')
+      // debugger 
+      fetch(`recipes/${id}/next`)
+    })
   }
 
+//constructor function
 function Recipe(recipe) {
   this.id = recipe.id
   this.name = recipe.attributes.name
   this.image = recipe.attributes.image
   this.description = recipe.attributes.description
   this.directions = recipe.attributes.directions
-  // this.ingredients = recipe.ingredients
 
+  this.ingredients = recipe.attributes.ingredients
 }
 
 
 
 Recipe.prototype.formatIndex = function(){
-  // console.log(this)
   let postHtml = `
       <a href="/recipes/${this.id}" data-id="${this.id}" class="show_link"><h1>${this.name}</h1></a>
-      <img src="${this.image}" height="250" width="300">
+      <h4>${this.description}</h4>
       `
   return postHtml
 }
 
 Recipe.prototype.formatShow = function(){
+  console.log(this)
   let postHtml = `
-    <h3>${this.name}</h3>
+    <h2>${this.name}</h2>
+    <img src="${this.image}" height="250" width="300">
+    <h4> ${this.ingredients.map(function(element){return `<li>${element.name}</li>` }).join('')} </h4>
+    <button class="next-recipe">Next</button>
   `
+
   return postHtml
 }
-
-// const htmlGenerator = (response) =>{
-//   let allRecipes = response.data.map((recipe)=>`<li>${recipe.attributes.name}</li>`)
-//   // document.getElementById("messingAround").innerHTML=(allRecipes)
-// }

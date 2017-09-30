@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: %i[show edit update destroy description]
-  before_action :authenticate_user!, except: %i[index show testing]
+  before_action :find_recipe, only: %i[show edit update destroy next]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @recipes = Recipe.all.order('created_at ASC')
@@ -10,10 +10,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  # def testing
-  #   @recipes = Recipe.all.order('created_at ASC')
-  #   render json: @recipes
-  # end
+  def next
+    @next_recipe = @recipe.next
+    render json: @next_recipe
+  end
 
   def new
     @recipe = Recipe.new
@@ -53,15 +53,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    # respond_to do |f|
-    #   f.html { render :edit }
-    #   f.json { render :edit }
-    # end
   end
 
   def favorite(_user)
     @favorites << Favorite.new(user: @user)
-    # render json: @favorites 
+    # render json: @favorites
   end
 
   # unlike the post
