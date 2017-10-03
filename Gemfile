@@ -39,9 +39,8 @@ gem 'omniauth-github'
 gem 'pry'
 gem 'record_tag_helper', '~> 1.0'
 gem 'active_model_serializers'
-gem 'will_paginate'
+# gem 'will_paginate'
 gem 'api-pagination'
-
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

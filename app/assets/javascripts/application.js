@@ -16,6 +16,7 @@
 //= require_tree .
 
 
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
