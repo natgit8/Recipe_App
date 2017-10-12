@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.0.4'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg'
+# gem 'pg'
 
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -39,7 +39,7 @@ gem 'omniauth-github'
 gem 'pry'
 gem 'record_tag_helper', '~> 1.0'
 gem 'active_model_serializers'
-# gem 'will_paginate'
+gem 'will_paginate'
 gem 'api-pagination'
 gem 'react-rails'
 
