@@ -41,6 +41,7 @@ gem 'record_tag_helper', '~> 1.0'
 gem 'active_model_serializers'
 # gem 'will_paginate'
 gem 'api-pagination'
+gem 'react-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
