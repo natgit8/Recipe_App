@@ -13,7 +13,7 @@
         <p class="recipeIngredients">
           <ol>
             <% @recipe.ingredients.each do |recipe_ingredient| %>
-            <%= recipe_ingredient.name %><br>
+            <%= recipe_ingredient.name -%><br>
             <% end %>
           </ol>
         </p>

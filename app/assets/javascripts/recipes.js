@@ -73,10 +73,11 @@ Recipe.prototype.formatIndex = function(){
 Recipe.prototype.formatShow = function(){
   console.log(this)
   let postHtml = `
-    <h2>${this.name}</h2>
+    <h1>${this.name}</h1>
     <img src="${this.image}" height="250" width="300">
-    <h4> ${this.ingredients.map(function(element){
-      return `<li>${element.name}</li>` }).join('') }
+    <h4>Ingredients: </h4> </br>
+    <h4> - ${this.ingredients.map(function(element){
+      return `${element.name}</br>` }).join('') }
     </h4>`
 
   return postHtml
