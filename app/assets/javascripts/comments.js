@@ -6,7 +6,7 @@ $(function(){
       method: 'DELETE',
     success: function(response) {
       console.log('delete successful', response);
-      $(`div#${e.target.id}`).remove();
+      $('div#${e.target.id}').remove();
       }
     });
   })

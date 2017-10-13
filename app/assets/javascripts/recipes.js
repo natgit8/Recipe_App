@@ -13,7 +13,7 @@ const bindClickHandlers = () => {
   $('.all_recipes').on('click', (e) => {
     e.preventDefault()
     history.pushState(null, null, "recipes")
-    fetch(`/recipes.json`)
+    fetch('/recipes.json')
       .then(res => res.json())
       .then(data => {
         $('#app-container').html('')
@@ -57,7 +57,6 @@ function Recipe(recipe) {
   this.image = recipe.attributes.image
   this.description = recipe.attributes.description
   this.directions = recipe.attributes.directions
-
   this.ingredients = recipe.attributes.ingredients
 }
 
@@ -77,8 +76,7 @@ Recipe.prototype.formatShow = function(){
     <h2>${this.name}</h2>
     <img src="${this.image}" height="250" width="300">
     <h4> ${this.ingredients.map(function(element){return `<li>${element.name}</li>` }).join('')} </h4>
-
-  `
+    `
 
   return postHtml
 }
