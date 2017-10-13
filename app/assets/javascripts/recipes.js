@@ -75,8 +75,9 @@ Recipe.prototype.formatShow = function(){
   let postHtml = `
     <h2>${this.name}</h2>
     <img src="${this.image}" height="250" width="300">
-    <h4> ${this.ingredients.map(function(element){return `<li>${element.name}</li>` }).join('')} </h4>
-    `
+    <h4> ${this.ingredients.map(function(element){
+      return `<li>${element.name}</li>` }).join('') }
+    </h4>`
 
   return postHtml
 }
