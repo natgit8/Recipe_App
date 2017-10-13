@@ -82,4 +82,5 @@ Recipe.prototype.formatShow = function(){
 }
 
 
+
 //adding next button from API <button class="next-recipe" data-id="${this.id}">Next</button>

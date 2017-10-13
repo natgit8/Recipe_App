@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :favorites, only: :create
   end
 
+  # get 'recipes/:id/favorite', to: 'recipes'
+
   resources :ingredients
   get 'recipes/:id/next', to: 'recipes#next'
   root 'recipes#index'

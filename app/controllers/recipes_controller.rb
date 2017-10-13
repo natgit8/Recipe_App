@@ -32,7 +32,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -55,15 +54,18 @@ class RecipesController < ApplicationController
   def edit
   end
 
-  def favorite(_user)
-    @favorites << Favorite.new(user: @user)
-    # render json: @favorites
-  end
-
-  # unlike the post
-  def unfavorite(_user)
-    @favorites.where(user_id: @user.id).first.destroy
-  end
+  def favorite
+   type = params[:type]
+   if type == "favorite"
+     current_user.favorites << @recipe
+     redirect_to :back
+   elsif type == "unfavorite"
+     current_user.favorites.delete(@recipe)
+     redirect_to :back
+   else
+     redirect_to :back
+   end
+ end
 
   def destroy
     @recipe.destroy

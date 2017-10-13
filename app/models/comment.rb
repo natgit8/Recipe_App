@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
 
   validates :user, presence:true
   validates :recipe, presence:true
-  validates :body, presence: true
+  validates_presence_of :body
 
   validates_inclusion_of :rating, :in => 1..5, message: "is between 1-5"
 
