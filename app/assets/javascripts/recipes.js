@@ -1,10 +1,3 @@
-// #
-// Place all the behaviors and hooks related to the matching controller here.#All this logic will automatically be available in application.js.#You can use CoffeeScript in this file: http: //coffeescript.org/
-//
-//   #$ - > #$('#recipes').imagesLoaded - > #$('#recipes').masonry# itemSelector: '.box'#
-// isFitWidth: true
-
-
 $(function() {
   bindClickHandlers()
 })
@@ -13,6 +6,7 @@ const bindClickHandlers = () => {
   $('.all_recipes').on('click', (e) => {
     e.preventDefault()
     history.pushState(null, null, "recipes")
+    //will change what url link is
     fetch('/recipes.json')
       .then(res => res.json())
       .then(data => {
@@ -33,9 +27,8 @@ const bindClickHandlers = () => {
       // alert("YOU CLICKED SHOW LINK")
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
+        console.log(data)
         let newRecipe = new Recipe(data.data)
-
         let postHtml = newRecipe.formatShow()
         $('#app-container').append(postHtml)
       })
@@ -44,9 +37,9 @@ const bindClickHandlers = () => {
     $(document).on("click", ".next-recipe", function() {
       let id = $(this).attr('data-id')
       fetch(`recipes/${id}/next`)
-      //   .then((resp) => resp.json())
-      //   // debugger
-      // $('.next-recipe').append()
+        // .then((resp) => resp.json())
+        // debugger;
+      // $('.next-recipe').append(postHtml)
     })
   }
 
@@ -76,7 +69,7 @@ Recipe.prototype.formatShow = function(){
     <h1>${this.name}</h1>
     <img src="${this.image}" height="250" width="300">
     <h4>Ingredients: </h4> </br>
-    <h4> - ${this.ingredients.map(function(element){
+    <h4>${this.ingredients.map(function(element){
       return `${element.name}</br>` }).join('') }
     </h4>`
 
@@ -84,5 +77,4 @@ Recipe.prototype.formatShow = function(){
 }
 
 
-
-//adding next button from API <button class="next-recipe" data-id="${this.id}">Next</button>
+  /*<button class="next-recipe" data-id="${this.id}">Next</button>*/
