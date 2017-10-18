@@ -14,9 +14,10 @@
         <% if current_user %>
           <%= link_to recipe_favorites_path(recipe_id: recipe.id, user_id: current_user), method: :post, class: "btn btn-heart" do %>
                   <i class="glyphicon glyphicon-heart"></i>
-                  <input class="qty" readonly="readonly" type="text" value="0"/>
+                  <input class="qty" type="text" value="0"/>
                   <% end %>
           <% end %>
+          <%#= current_user.favorites.count %>
         </div>
       </div>
     </div>
