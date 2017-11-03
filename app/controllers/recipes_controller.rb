@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
 
   def next
     @next_recipe = @recipe.next
-    render json: @next_recipe
+    render json: @next_recipe 
   end
 
   def new

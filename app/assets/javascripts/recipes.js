@@ -38,10 +38,8 @@ const bindClickHandlers = () => {
       $('#app-container').html('')
       let id = $(this).attr('data-id')
       fetch(`/recipes/${id}.json`)
-      // alert("YOU CLICKED SHOW LINK")
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
         let newRecipe = new Recipe(data.data)
         let postHtml = newRecipe.formatShow()
         $('#app-container').append(postHtml)
@@ -56,7 +54,6 @@ const bindClickHandlers = () => {
         success: function(data){
           let newRecipe = new Recipe(data.data)
           let postHtml = newRecipe.formatShow()
-          // debugger;
           $('#app-container').html(postHtml)
           console.log(data)
         }

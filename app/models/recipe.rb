@@ -29,13 +29,11 @@ class Recipe < ApplicationRecord
 
   def next
     recipe = Recipe.where("id > ?", id).first
-
     if recipe
       recipe
     else
       Recipe.first
     end
-
   end
 
 end
