@@ -1,16 +1,17 @@
-<div class="container" id="comment-form">
-      <h3>Add a comment:</h3>
-      <%= form_for([@recipe, @recipe.comments.build]) do |f| %>
-      <h4><%= f.label :rating %> (1-5)</h4>
 
-      <p>
-        <%= f.number_field :rating %>
-      </p>
-      <h4><%= f.label :comment %></h4>
-      <p>
-        <%= f.text_area :body %>
-      </p><br>
-      <p><%= f.submit data: { disable_with: false } %></p>
-      <% end %>
-    </div>
-</div>
+  <div class="container" id="comment-form">
+        <h3>Add a comment:</h3>
+        <%= form_for([@recipe, @recipe.comments.build]) do |f| %>
+        <h4><%= f.label :rating %> (1-5)</h4>
+
+        <p>
+          <%= f.number_field :rating %>
+        </p>
+        <h4><%= f.label :comment %></h4>
+        <p>
+          <%= f.text_area :body %>
+        </p><br>
+        <p><%= f.submit data: { disable_with: false } %></p>
+        <% end %>
+      </div>
+  </div>

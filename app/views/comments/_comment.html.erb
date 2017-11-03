@@ -4,11 +4,11 @@
   <%= comment.body %> </br>
   <strong> Rating: </strong><%= comment.rating %>
 
-
+  <% if comment.user == current_user %>
     <%= button_to(recipe_comment_path(@recipe.id, comment.id), {method: :delete, class:"btn btn-danger delete-comment-button pull-right",id:"comment_#{comment.id}", params:{id: comment.id, recipe: @recipe.id}, data: {recipe: @recipe.id, comment: comment.id}} ) do%>
-    <i class="glyphicon glyphicon-trash" id="comment_<%= comment.id %>"></i>
-      <% end %>
-
-    </br>
-    <hr/>
+      <i class="glyphicon glyphicon-trash" id="comment_<%= comment.id %>"></i>
+    <% end %>
+  <% end %>
+  </br>
+  <hr/>
 </div>

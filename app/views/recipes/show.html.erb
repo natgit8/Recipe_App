@@ -41,9 +41,12 @@
   <div class= "comments-body">
     <ol><%= render @recipe.comments %></ol></br>
   </div>
-  <div class='panel panel-default text-left'>
-    <div class='col-sm-2 col-md-offset-2'>
-      <%= render partial: 'comments/form', locals: { comment: @comment }%>
+
+  <% if user_signed_in? %>
+    <div class='panel panel-default text-left'>
+      <div class='col-sm-2 col-md-offset-2'>
+        <%= render partial: 'comments/form', locals: { comment: @comment }%>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

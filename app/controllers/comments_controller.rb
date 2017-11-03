@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @recipe.comments.build(comment_params)
+    # binding.pry
     @comment.user_id = current_user.id
     if @comment.save
       # redirect_to recipe_path(@recipe), notice: 'Your comment was successfully posted!'

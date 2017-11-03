@@ -8,15 +8,29 @@ const bindClickHandlers = () => {
     history.pushState(null, null, "recipes")
     //will change what url link is
     fetch('/recipes.json')
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         $('#app-container').html('')
-        data.data.forEach( recipe => {
-          let newRecipe = new Recipe(recipe)
-          // console.log(newRecipe)
-          let postHtml = newRecipe.formatIndex()
-          $('#app-container').append(postHtml)
-        })
+        data.data
+          .sort((a, b) => {
+            const nameA = a.attributes.name.toUpperCase()
+            const nameB = b.attributes.name.toUpperCase()
+            if(nameA> nameB) {
+              return 1;
+            }
+
+            if (nameB < nameA) {
+              return -1;
+            }
+            return 0;
+
+          })
+          .forEach(recipe => {
+            let newRecipe = new Recipe(recipe)
+            // console.log(newRecipe)
+            let postHtml = newRecipe.formatIndex()
+            $('#app-container').append(postHtml)
+          })
       })
     })
     $(document).on('click', ".show_link", function(e) {
@@ -27,19 +41,26 @@ const bindClickHandlers = () => {
       // alert("YOU CLICKED SHOW LINK")
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        // console.log(data)
         let newRecipe = new Recipe(data.data)
         let postHtml = newRecipe.formatShow()
         $('#app-container').append(postHtml)
       })
     })
-
-    $(document).on("click", ".next-recipe", function() {
-      let id = $(this).attr('data-id')
-      fetch(`recipes/${id}/next`)
-        // .then((resp) => resp.json())
-        // debugger;
-      // $('.next-recipe').append(postHtml)
+    $(document).on("click", ".next-recipe", function(e) {
+      e.preventDefault();
+      const id = $(this).attr('data-id')
+      $.ajax({
+        type: 'get',
+        url: `recipes/${id}/next`,
+        success: function(data){
+          let newRecipe = new Recipe(data.data)
+          let postHtml = newRecipe.formatShow()
+          // debugger;
+          $('#app-container').html(postHtml)
+          console.log(data)
+        }
+      })
     })
   }
 
@@ -64,17 +85,16 @@ Recipe.prototype.formatIndex = function(){
 }
 
 Recipe.prototype.formatShow = function(){
-  console.log(this)
+  // console.log(this)
   let postHtml = `
     <h1>${this.name}</h1>
     <img src="${this.image}" height="250" width="300">
     <h4>Ingredients: </h4> </br>
     <h4>${this.ingredients.map(function(element){
       return `${element.name}</br>` }).join('') }
-    </h4>`
+    </h4>
+    <button class="next-recipe" data-id="${this.id}">Next</button>
+    `
 
   return postHtml
 }
-
-
-  /*<button class="next-recipe" data-id="${this.id}">Next</button>*/
