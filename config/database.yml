@@ -23,15 +23,16 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: blog_development
+  database: natashagitlin
   pool: 5
-  username: 
+  username:
   password:
+  port: 5433
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: blog_test
+  database: natashagitlin
   pool: 5
   username:
   password:
